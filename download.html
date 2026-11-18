@@ -17,7 +17,7 @@
     <div class="wrap">
       <h1 class="display d-xl">Download Astrala for Mac</h1>
       <p class="lede" data-reveal style="--d:200ms">Free for macOS 12 or later, on Apple Silicon and Intel. Start with a fresh wallet and a small amount while it is in beta.</p>
-      <p class="hero-alt">On Windows or Linux? Use the <a class="inl" href="#extension">browser extension</a>.</p>
+      <p class="hero-alt">On Windows or Linux? Open the <a class="inl" href="#web">web wallet</a>, nothing to install, or use the <a class="inl" href="#extension">browser extension</a>.</p>
     </div>
   </section>
 
@@ -74,6 +74,31 @@ shasum -a 256 /tmp/astrala-app/out/main/index.js /tmp/astrala-app/out/preload/in
           <p style="margin-top:12px">Both pairs of fingerprints must be identical.</p>
         </div>
       </details>
+    </div>
+  </section>
+
+  <section class="section" id="web">
+    <div class="wrap webw">
+      <div class="ext-head">
+        <h2 class="display d-l">No install: Astrala on the web</h2>
+        <p class="lede" data-reveal>The same wallet as the extension, opened from a link. Nothing to download, so it suits a Windows PC where you can't install anything.</p>
+      </div>
+      <div class="webw-card glass" data-reveal="scale">
+        <div class="webw-bar" aria-hidden="true">
+          <span class="webw-dots"><i></i><i></i><i></i></span>
+          <span class="webw-slot" id="webw-slot"><span class="webw-slot-txt">Drop it here</span></span>
+        </div>
+        <div class="webw-body">
+          <div class="webw-hint" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg><span>Drag to your bookmarks bar</span></div>
+          <a class="webw-bm" id="webw-bm" href="wallet/" target="_blank" rel="noopener" draggable="true" title="Drag to your bookmarks bar, or click to open"><img src="wallet/icons/48.png" alt="" width="22" height="22" draggable="false"><span>Astrala wallet</span></a>
+          <p class="webw-or" id="webw-or">Or <a class="inl" href="wallet/" target="_blank" rel="noopener">open it now</a>. No bookmarks bar? Press <kbd id="webw-kbd">Ctrl</kbd> <kbd id="webw-kbd2">Shift</kbd> <kbd>B</kbd> to show it.</p>
+        </div>
+        <ul class="webw-facts">
+          <li><b>Keys stay in this browser.</b> Your wallet is encrypted with your password and stored on this device only. Nothing is sent to Astrala; balances come from public blockchain nodes, which see your addresses.</li>
+          <li><b>PIN, password and recovery phrase</b> are typed only in a secure box drawn outside the wallet's screens.</li>
+          <li><b>Beta, and less isolated</b> than the app or extension: any web page shares its browser with other sites and add-ons. Keep small amounts here.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -140,7 +165,7 @@ shasum -a 256 /tmp/astrala-app/out/main/index.js /tmp/astrala-app/out/preload/in
     <div class="wrap">
       <div class="cta-band glass" data-reveal="scale">
         <h2 class="display d-l">Windows and Linux</h2>
-        <p class="lede">On Windows and Linux you can use Astrala today through the <a class="inl" href="#extension">browser extension</a>. The full desktop app for Windows and Linux is on the way.</p>
+        <p class="lede">On Windows and Linux you can use Astrala today in the <a class="inl" href="#web">web wallet</a> (nothing to install) or the <a class="inl" href="#extension">browser extension</a>. The full desktop app for Windows and Linux is on the way.</p>
         <div class="row f-soc" data-links="icons" style="margin-top:28px"></div>
         <div class="row"><a class="btn btn-ghost" href="help.html">Read the setup guide</a><a class="btn btn-ghost" href="faq.html">Questions? FAQ</a></div>
       </div>
