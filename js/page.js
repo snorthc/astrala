@@ -81,6 +81,30 @@ if (extSetup) {
   detect().then((k) => k && render(k))
 }
 
+/* ---- download page: the web wallet launcher. A plain link to /wallet/ (never a javascript: bookmarklet, which
+   would run on whatever site is open): dragged to the bookmarks bar it becomes a one-click way back in. ---- */
+const bm = $('#webw-bm')
+if (bm) {
+  const card = bm.closest('.webw-card'), slot = $('.webw-slot-txt', card)
+  if (/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) { $('#webw-kbd').textContent = '⌘'; $('#webw-kbd2').textContent = '⇧' }
+  bm.addEventListener('dragstart', (e) => {
+    const url = bm.href, title = 'Astrala wallet'
+    e.dataTransfer.effectAllowed = 'copyLink'
+    e.dataTransfer.setData('text/uri-list', url)
+    e.dataTransfer.setData('text/plain', url)
+    e.dataTransfer.setData('text/x-moz-url', url + '\n' + title) // Firefox names the bookmark from this
+    e.dataTransfer.setData('text/html', `<a href="${esc(url)}">${title}</a>`)
+    card.classList.remove('added'); card.classList.add('dragging'); slot.textContent = 'Drop it on your bookmarks bar ↑'
+    sound.play('tick', .3)
+  })
+  bm.addEventListener('dragend', (e) => {
+    card.classList.remove('dragging')
+    // dropped somewhere that took it (the bookmarks bar): say so; dropped back on the page: reset
+    if (e.dataTransfer.dropEffect !== 'none') { card.classList.add('added'); slot.textContent = 'Saved. Click “Astrala wallet” in your bar any time'; sound.play('sparkle') }
+    else slot.textContent = 'Drop it here'
+  })
+}
+
 /* ---- download page: live release from GitHub (via the site server) ---- */
 if (document.body.classList.contains('p-download')) {
   site().then((s) => {

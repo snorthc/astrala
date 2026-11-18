@@ -1,0 +1,57 @@
+/* The host page of the browser wallet: it holds the sandboxed wallet screens in a frame and draws the one thing
+   they must not be able to draw or click themselves, the confirmation. */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #050507; color: #f2ede6; font: 14px/1.45 -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+body { width: 380px; height: 600px; overflow: hidden; }
+body.tab { width: 100vw; height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
+#ui { display: block; width: 100%; flex: 1; min-height: 0; border: 0; background: #050507; }
+/* the beta line: always visible, never covering the wallet (web twin of the extension's shell) */
+#beta { flex: none; display: flex; align-items: center; gap: 10px; padding: 7px 14px; font-size: 12px; line-height: 1.35; color: rgba(242, 237, 230, .72); background: #101014; box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .08); }
+#beta strong { flex: none; padding: 2px 8px; border-radius: 99px; font-weight: 650; color: #15130f; background: #e3a35c; }
+#beta span { flex: 1; min-width: 0; text-wrap: pretty; }
+#beta a { flex: none; color: #efe6d8; font-weight: 600; text-decoration: none; box-shadow: inset 0 -1px 0 rgba(239, 230, 216, .4); }
+#beta a:hover { box-shadow: inset 0 -1px 0 #efe6d8; }
+@media (max-width: 560px) { #beta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
+#ask { position: fixed; inset: 0; z-index: 10; display: grid; place-items: end center; padding: 12px; background: rgba(2, 2, 4, .72); }
+#ask[hidden] { display: none; }
+body.tab #ask { place-items: center; }
+.sheet { width: 100%; max-width: 420px; padding: 18px; border-radius: 22px; background: #15151a; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 24px 60px -20px #000; animation: up .22s cubic-bezier(.16, 1, .3, 1); }
+@keyframes up { from { opacity: 0; transform: translateY(14px); } }
+.mark { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: rgba(242, 237, 230, .6); }
+.mark img { width: 18px; height: 18px; }
+h1 { margin: 12px 0 8px; font-size: 19px; font-weight: 650; letter-spacing: -.015em; text-wrap: balance; }
+#ask-text { direction: ltr; unicode-bidi: plaintext; font-size: 14px; color: rgba(242, 237, 230, .86); overflow-wrap: anywhere; white-space: pre-wrap; }
+.sheet.danger h1 { color: #ffb4b4; }
+.row { display: flex; gap: 8px; margin-top: 16px; }
+button { flex: 1; height: 44px; border: 0; border-radius: 12px; font: inherit; font-weight: 600; color: #f2ede6; background: rgba(255, 255, 255, .09); cursor: pointer; transition: transform .16s ease-out, background-color .16s; }
+button:hover { background: rgba(255, 255, 255, .14); }
+button:active { transform: scale(.97); }
+button.main { color: #15130f; background: #efe6d8; }
+button.main:hover { background: #f6eee2; }
+.sheet.danger button.main { color: #fff; background: #b93a3a; }
+button:focus-visible { outline: 2px solid rgba(241, 230, 214, .8); outline-offset: 2px; }
+.fine { margin-top: 12px; font-size: 11.5px; color: rgba(242, 237, 230, .5); text-wrap: pretty; }
+.stopped { display: grid; place-items: center; height: 100%; padding: 28px; text-align: center; color: rgba(242, 237, 230, .8); }
+@media (prefers-reduced-motion: reduce) { .sheet { animation: none; } button { transition: none; } }
+
+/* ---- what is typed or shown in the secure box ---- */
+#ask-body:empty, #ask-text:empty, #ask-err:empty { display: none; }
+#ask-body { margin-top: 14px; }
+#ask-err { margin-top: 10px; font-size: 13px; color: #ff9b9b; }
+.sheet { max-height: calc(100% - 8px); overflow-y: auto; }
+input.in, textarea.in { width: 100%; height: 44px; padding: 0 14px; border: 0; border-radius: 12px; outline: none; font: inherit; color: #f2ede6; background: rgba(0, 0, 0, .45); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); caret-color: #e3a35c; }
+input.in + input.in { margin-top: 8px; }
+textarea.in { height: 108px; padding: 12px 14px; resize: none; font: 13px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
+input.in:focus, textarea.in:focus { box-shadow: inset 0 0 0 1px rgba(241, 230, 214, .6), 0 0 0 3px rgba(241, 230, 214, .1); }
+.hint { margin-top: 8px; font-size: 12px; color: rgba(242, 237, 230, .55); }
+.dots { display: flex; justify-content: center; gap: 12px; margin: 4px 0 14px; }
+.dots i { width: 13px; height: 13px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(242, 237, 230, .5); transition: background-color .12s, transform .12s; }
+.dots i.on { background: #efe6d8; box-shadow: none; transform: scale(1.08); }
+.pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pad button { height: 46px; font-size: 19px; font-variant-numeric: tabular-nums; }
+.pad button.quiet { background: transparent; font-size: 15px; color: rgba(242, 237, 230, .7); }
+.words { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; counter-reset: w; }
+.words span { counter-increment: w; padding: 7px 8px; border-radius: 9px; background: rgba(0, 0, 0, .4); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); font: 12.5px/1.2 ui-monospace, 'SF Mono', Menlo, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; user-select: text; }
+.words span::before { content: counter(w) ' '; color: rgba(242, 237, 230, .4); }
+button:disabled { opacity: .4; cursor: default; transform: none; }
