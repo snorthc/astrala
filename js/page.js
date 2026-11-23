@@ -48,7 +48,7 @@ if (extSetup) {
     opera: chromium('Opera', 'opera://extensions'),
     vivaldi: chromium('Vivaldi', 'vivaldi://extensions'),
     firefox: soft('Firefox', 'A permanent Firefox install needs its own <b>signed build</b> — free, no fee, but a separate step we’re setting up. For now Astrala runs in <b>Chrome, Edge, Brave, Opera or Vivaldi</b>.'),
-    safari: soft('Safari', 'Safari packages extensions through Xcode, so there’s no load-from-file option. On a Mac the <a class="inl" href="download.html">Astrala app</a> above is the better route; for a browser wallet use <b>Chrome, Edge or Brave</b>.'),
+    safari: soft('Safari', 'Safari packages extensions through Xcode, so there’s no load-from-file option. On a Mac the <a class="inl" href="/download.html">Astrala app</a> above is the better route; for a browser wallet use <b>Chrome, Edge or Brave</b>.'),
   }
   const bindCopy = (root) => $$('.ext-copy', root).forEach((b) => b.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(b.dataset.url); const t = b.textContent; b.textContent = 'Copied ✓'; b.classList.add('done'); sound.play('sparkle'); setTimeout(() => { b.textContent = t; b.classList.remove('done') }, 1500) } catch {}
