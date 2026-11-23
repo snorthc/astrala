@@ -22,9 +22,9 @@ function chrome() {
   const nav = document.createElement('header')
   nav.className = 'nav'
   nav.innerHTML = `
-    <a class="brand" href="/" aria-label="Astrala home">${MARK}ASTRALA</a>
+    <a class="brand" href="index.html" aria-label="Astrala home">${MARK}ASTRALA</a>
     <nav class="nav-links">${PAGES.map(([h, t]) => `<a href="${h}" class="${h === here ? 'active' : ''}">${t}</a>`).join('')}</nav>
-    <a class="btn btn-gold" href="/download.html">Download</a>
+    <a class="btn btn-gold" href="download.html">Download</a>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h16M4 16h16"/></svg></button>`
   document.body.prepend(nav)
   const ann = document.createElement('div'); ann.className = 'announce'; ann.setAttribute('role', 'status'); document.body.prepend(ann)
@@ -38,11 +38,11 @@ function chrome() {
     foot.className = 'footer'
     foot.innerHTML = `<div class="wrap">
       <div class="f-grid">
-        <div><a class="brand" href="/">${MARK}ASTRALA</a>
+        <div><a class="brand" href="index.html">${MARK}ASTRALA</a>
           <p class="muted" style="margin-top:16px;max-width:30ch;font-size:15px">The private, self-custody crypto wallet for Mac. Free to download.</p>
           <div class="f-soc" data-links="icons"></div></div>
-        <div class="f-col"><h4>Product</h4><a href="/#features">Features</a><a href="/#pricing">Pricing</a><a href="/download.html">Download</a><a href="/download.html#extension">Browser extension</a><a href="#" data-source>Source code</a></div>
-        <div class="f-col"><h4>Learn</h4><a href="/help.html">Help center</a><a href="/faq.html">FAQ</a><a href="/download.html#verify">Verify a download</a><a href="/faq.html#scam">Is it safe?</a></div>
+        <div class="f-col"><h4>Product</h4><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="download.html">Download</a><a href="download.html#extension">Browser extension</a><a href="#" data-source>Source code</a></div>
+        <div class="f-col"><h4>Learn</h4><a href="help.html">Help center</a><a href="faq.html">FAQ</a><a href="download.html#verify">Verify a download</a><a href="faq.html#scam">Is it safe?</a></div>
         <div class="f-col"><h4>Community</h4><div data-links="list"></div></div>
       </div>
       <div class="f-bottom"><span>© ${new Date().getFullYear()} Astrala · Public beta</span><span>This site counts page views. No cookies, no IP addresses, no trackers.</span></div>
@@ -75,9 +75,6 @@ async function applySite() {
     bar.innerHTML = `<i class="dot"></i><span>${esc(a.text)}</span>${a.link ? `<a href="${esc(a.link)}">Learn more</a>` : ''}`
     requestAnimationFrame(() => { bar.classList.add('show'); document.body.classList.add('has-announce') })
   }
-  // fee rates set in Astrala HQ (basis points to "0.5%")
-  const F = s?.fees, key = { swap: 'swapBps', route: 'routeBps', split: 'splitBps' }
-  if (F) $$('[data-fee]').forEach((el) => { const bps = F[key[el.dataset.fee]]; if (Number.isFinite(bps)) el.textContent = `${+(bps / 100).toFixed(2)}%` })
   document.dispatchEvent(new CustomEvent('site', { detail: s }))
 }
 
