@@ -26,8 +26,8 @@
         <span class="eyebrow" data-reveal>The basics</span>
         <div class="acc">
           <details id="scam" data-reveal><summary>How do I know you won't drain my wallet?<span class="pm"></span></summary><div class="body">
-            <p>You should ask that of every wallet. Astrala is self-custody: your keys are created on your Mac and never leave it. The code that holds them and makes every network request is public; you can build it yourself and check it matches the app you downloaded, byte for byte.</p>
-            <p>There's no telemetry and nothing phones home: watch the traffic with a free tool like LuLu and you'll only see public blockchain nodes and price feeds. The interface runs in a sandbox the public code controls: no internet, no disk, no keys. And we will never DM you or ask for your recovery phrase.</p></div></details>
+            <p>You should ask that of every wallet. Astrala is self-custody: your keys are created on your Mac and never leave it. Every release has a SHA-256 checksum, so you can check the file you downloaded is the one we published.</p>
+            <p>There's no telemetry and nothing phones home: watch the traffic with a free tool like LuLu and you'll only see public blockchain nodes and price feeds. The interface runs in a sandbox with no internet, no disk and no keys. And we will never DM you or ask for your recovery phrase.</p></div></details>
           <details data-reveal><summary>Is Astrala really free?<span class="pm"></span></summary><div class="body">
             <p>Yes. Downloading and using Astrala is free, with no subscription and no account. Sending pays the blockchain's own network fee, which goes to the network, not to us. Astrala only charges when you trade: 0.5% on a swap, 2% on a route (a chain of swaps through one-time wallets) and 15% on a split. The fee is shown on the review screen before you confirm and goes out as its own on-chain transfer. Sends never carry an Astrala fee.</p></div></details>
           <details data-reveal><summary>What does "self-custody" mean?<span class="pm"></span></summary><div class="body">
@@ -71,9 +71,9 @@
         <span class="eyebrow" data-reveal>Trust &amp; verification</span>
         <div class="acc">
           <details id="verify" data-reveal><summary>How do I check my download is genuine?<span class="pm"></span></summary><div class="body">
-            <p>Every release publishes a SHA-256 fingerprint. Run <code>shasum -a 256 ~/Downloads/Astrala-Wallet.dmg</code> and compare it with the one on the <a href="download.html#verify" style="color:var(--gold)">download page</a>. If it doesn't match, delete it. You can go further and rebuild the engine to compare it with the app itself.</p></div></details>
+            <p>Every release publishes a SHA-256 fingerprint. Run <code>shasum -a 256 ~/Downloads/Astrala-Wallet.dmg</code> and compare it with the one on the <a href="download.html#verify" style="color:var(--gold)">download page</a>. If it doesn't match, delete it.</p></div></details>
           <details data-reveal><summary>Is Astrala open source?<span class="pm"></span></summary><div class="body">
-            <p>The engine, everything that touches your keys, your money and the network, is published so anyone can read and verify it. The visual design is kept private so it can't be cloned into convincing fake copies. The public code locks the interface in a sandbox with no network, no disk and no keys, which you can confirm yourself.</p></div></details>
+            <p>No. The source code is not public. What you can check yourself today: each release's SHA-256 checksum, and the app's network traffic, which goes only to public blockchain nodes and price feeds.</p></div></details>
           <details data-reveal><summary>What if I lose my Mac?<span class="pm"></span></summary><div class="body">
             <p>Install Astrala on another Mac and restore from your 24-word phrase. Your coins live on the blockchain, not on the device, so they all come back.</p></div></details>
         </div>

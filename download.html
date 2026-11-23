@@ -61,19 +61,6 @@
         <pre id="sha-cmd">shasum -a 256 ~/Downloads/Astrala-Wallet.dmg</pre>
       </div>
       <div class="sha-row" id="sha-row" data-reveal><span class="dim" style="font-size:14px">It should print</span><code id="sha">published with each release</code></div>
-      <details class="more" data-reveal>
-        <summary>Go further: rebuild the engine and compare it with the app</summary>
-        <div class="in">
-          <p>The code that holds your keys and makes every network request is public. Build it and its fingerprint matches the engine inside the app you downloaded, byte for byte.</p>
-          <pre>git clone &lt;source repository&gt; &amp;&amp; cd astrala-engine
-npm ci &amp;&amp; npm run build
-shasum -a 256 out/main/index.js out/preload/index.cjs
-
-npx @electron/asar extract "/Applications/Astrala Wallet.app/Contents/Resources/app.asar" /tmp/astrala-app
-shasum -a 256 /tmp/astrala-app/out/main/index.js /tmp/astrala-app/out/preload/index.cjs</pre>
-          <p style="margin-top:12px">Both pairs of fingerprints must be identical.</p>
-        </div>
-      </details>
     </div>
   </section>
 
